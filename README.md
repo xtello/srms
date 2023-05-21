@@ -31,7 +31,7 @@ Some operations on the API (HTTP POST/DELETE) reuire a token. The expected token
 
 `export SRMS_TOKEN=secret-token-here`
 
-## Things that could/should to be improved
+## Things that could/should be improved
   * Use h2 in-memory DB for the UnitTests to test SQL requests, or an actual Postgre DB dedicated to the tests
   * Use maven profiles to provide a "dev" profile for local devs, and a "production" profile for QA/Staging/Production environments (e.g. logs configuration, token, databse config, ...)
   * Add more Integration tests (see an example in `src/test/java/io/shyftlabs/srms/StudentResultManagementApplicationTests.java`), for example to make sure a result is removed when the associated student/course is removed
