@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<property name="log.dir" value="./logs" />
+	<property name="log.archive.dir" value="./logs/archives" />
+
+	<appender name="RollingFile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log.dir}/srms.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log.archive.dir}/srms-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>5MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{60} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<root level="info">
+		<appender-ref ref="RollingFile" />
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<logger name="io.shyftlabs.srms" level="info" additivity="false">
+		<appender-ref ref="RollingFile" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+</configuration>
